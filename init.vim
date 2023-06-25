@@ -73,6 +73,9 @@ Plug 'nvim-lua/plenary.nvim'
 
 Plug 'ray-x/lsp_signature.nvim'
 
+" HTML emmet plugin
+Plug 'mattn/emmet-vim'
+
 " color schemas
 Plug 'morhetz/gruvbox'  " colorscheme gruvbox
 Plug 'mhartington/oceanic-next'  " colorscheme OceanicNext
@@ -124,7 +127,6 @@ function! s:Warn(msg)
   echomsg a:msg
   echohl NONE
 endfunction
-
 
 lua << EOF
 require('main')
