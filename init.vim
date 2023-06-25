@@ -23,6 +23,21 @@ let g:transparent_enabled = v:true
 inoremap jk <esc>
 nnoremap H gT
 nnoremap L gt
+nnoremap <F3> :so ~/.config/nvim/init.vim <CR>
+nnoremap ,<space> :nohlsearch<CR>
+nnoremap <F2> :FloatermToggle<CR>
+
+" Run Python and C files by Ctrl+h
+autocmd FileType python map <buffer> <C-h> :w<CR>:exec '!python3.11' shellescape(@%, 1)<CR>
+autocmd FileType python imap <buffer> <C-h> <esc>:w<CR>:exec '!python3.11' shellescape(@%, 1)<CR>
+
+autocmd FileType c map <buffer> <C-h> :w<CR>:exec '!gcc' shellescape(@%, 1) '-o out; ./out'<CR>
+autocmd FileType c imap <buffer> <C-h> <esc>:w<CR>:exec '!gcc' shellescape(@%, 1) '-o out; ./out'<CR>
+
+autocmd FileType sh map <buffer> <C-h> :w<CR>:exec '!bash' shellescape(@%, 1)<CR>
+autocmd FileType sh imap <buffer> <C-h> <esc>:w<CR>:exec '!bash' shellescape(@%, 1)<CR>
+
+autocmd FileType python set colorcolumn=79
 
 call plug#begin('~/.vim/plugged')
 
@@ -31,8 +46,13 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'L3MON4D3/LuaSnip'
+
+" TS from here https://jose-elias-alvarez.medium.com/configuring-neovims-lsp-client-for-typescript-development-5789d58ea9c
 Plug 'jose-elias-alvarez/null-ls.nvim'
-Plug 'MunifTanjim/eslint.nvim'
+Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
+Plug 'nvim-lua/plenary.nvim'
+
+Plug 'ray-x/lsp_signature.nvim'
 
 " color schemas
 Plug 'morhetz/gruvbox'  " colorscheme gruvbox
@@ -43,28 +63,9 @@ Plug 'ayu-theme/ayu-vim'
 Plug 'xiyaowong/nvim-transparent'
 
 Plug 'Pocco81/auto-save.nvim'
-Plug 'justinmk/vim-sneak'
-
-" JS/JSX/TS
-Plug 'pangloss/vim-javascript'
-Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
-Plug 'maxmellon/vim-jsx-pretty'
-" TS from here https://jose-elias-alvarez.medium.com/configuring-neovims-lsp-client-for-typescript-development-5789d58ea9c
-Plug 'jose-elias-alvarez/null-ls.nvim'
-Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
-Plug 'nvim-lua/plenary.nvim'
-
-Plug 'prettier/vim-prettier', {
-  \ 'do': 'npm install --frozen-lockfile --production',
-  \ 'for': ['javascript', 'typescript', 'typescriptreact', 'javascriptreact', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
-
-Plug 'bmatcuk/stylelint-lsp'
 
 " Convenient floating terminal window
-"Plug 'voldikss/vim-floaterm'
-
-Plug 'ray-x/lsp_signature.nvim'
+Plug 'voldikss/vim-floaterm'
 
 call plug#end()
 let g:transparent_enabled = v:true
@@ -89,12 +90,6 @@ if (has('termguicolors'))
   set termguicolors
 endif
 
-" turn off search highlight
-nnoremap ,<space> :nohlsearch<CR>
-
-lua << EOF
-  require('main')
-EOF
 
 if v:version < 700 || exists('loaded_bclose') || &cp
   finish
@@ -111,16 +106,10 @@ function! s:Warn(msg)
   echohl NONE
 endfunction
 
-" Run Python and C files by Ctrl+h
-autocmd FileType python map <buffer> <C-h> :w<CR>:exec '!python3.11' shellescape(@%, 1)<CR>
-autocmd FileType python imap <buffer> <C-h> <esc>:w<CR>:exec '!python3.11' shellescape(@%, 1)<CR>
 
-autocmd FileType c map <buffer> <C-h> :w<CR>:exec '!gcc' shellescape(@%, 1) '-o out; ./out'<CR>
-autocmd FileType c imap <buffer> <C-h> <esc>:w<CR>:exec '!gcc' shellescape(@%, 1) '-o out; ./out'<CR>
+lua << EOF
+require('main')
+EOF
 
-autocmd FileType sh map <buffer> <C-h> :w<CR>:exec '!bash' shellescape(@%, 1)<CR>
-autocmd FileType sh imap <buffer> <C-h> <esc>:w<CR>:exec '!bash' shellescape(@%, 1)<CR>
-
-autocmd FileType python set colorcolumn=79
 
 

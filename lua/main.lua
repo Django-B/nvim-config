@@ -117,30 +117,6 @@ nvim_lsp.tsserver.setup({
     end,
 })
 
---[[
-local null_ls = require("null-ls")
-null_ls.setup({
-    sources = {
-        null_ls.builtins.diagnostics.eslint,
-        null_ls.builtins.code_actions.eslint,
-        null_ls.builtins.formatting.prettier
-    },
-    on_attach = on_attach
-})
-]]--
-
--- Stylelint format after save
---[[
-require'lspconfig'.stylelint_lsp.setup{
-  settings = {
-    stylelintplus = {
-      --autoFixOnSave = true,
-      --autoFixOnFormat = true,
-    }
-  }
-}
-]]--
-
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
 local servers = { 'pyright', 'rust_analyzer' }
@@ -151,4 +127,4 @@ for _, lsp in ipairs(servers) do
       debounce_text_changes = 150,
     }
   }
-end
+end 
