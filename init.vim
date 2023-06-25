@@ -42,6 +42,22 @@ autocmd FileType sh imap <buffer> <C-h> <esc>:w<CR>:exec '!bash' shellescape(@%,
 
 autocmd FileType python set colorcolumn=79
 
+" Clipboard
+let g:clipboard = {
+  \   'name': 'xclip-xfce4-clipman',
+  \   'copy': {
+  \      '+': 'xclip -selection clipboard',
+  \      '*': 'xclip -selection clipboard',
+  \    },
+  \   'paste': {
+  \      '+': 'xclip -selection clipboard -o',
+  \      '*': 'xclip -selection clipboard -o',
+  \   },
+  \   'cache_enabled': 1,
+  \ }
+vnoremap - "+y
+nnoremap + "+p
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'neovim/nvim-lspconfig'
