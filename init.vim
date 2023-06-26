@@ -42,8 +42,6 @@ autocmd FileType sh imap <buffer> <C-h> <esc>:w<CR>:exec '!bash' shellescape(@%,
 
 autocmd FileType python set colorcolumn=79
 
-au BufNewFile,BufRead *.ejs set filetype=html
-
 " Clipboard
 let g:clipboard = {
   \   'name': 'xclip-xfce4-clipman',
@@ -77,6 +75,8 @@ Plug 'ray-x/lsp_signature.nvim'
 
 " HTML emmet plugin
 Plug 'mattn/emmet-vim'
+Plug 'briancollins/vim-jst'
+Plug 'pangloss/vim-javascript'
 
 " color schemas
 Plug 'morhetz/gruvbox'  " colorscheme gruvbox
