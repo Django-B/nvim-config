@@ -26,6 +26,9 @@ nnoremap L gt
 nnoremap <F3> :so ~/.config/nvim/init.vim <CR>
 nnoremap ,<space> :nohlsearch<CR>
 
+nnoremap <C-h> :tabm -1<CR>
+nnoremap <C-l> :tabm +1<CR>
+
 " Show/hide terminal by key <F2>
 tnoremap <F2> <C-\><C-n>:FloatermToggle<CR>
 nnoremap <F2> :FloatermToggle<CR>
