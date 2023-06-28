@@ -1,6 +1,7 @@
 set mouse=a  " enable mouse
 set encoding=utf-8
 set number
+set relativenumber
 set noswapfile
 set scrolloff=7
 
@@ -18,6 +19,10 @@ set tabstop=2
 set expandtab
 set shiftwidth=2
 
+" Folding settings
+autocmd FileType * setlocal foldlevel=999
+set foldmethod=indent
+
 let g:transparent_enabled = v:true
 
 inoremap jk <esc>
@@ -34,14 +39,14 @@ tnoremap <F2> <C-\><C-n>:FloatermToggle<CR>
 nnoremap <F2> :FloatermToggle<CR>
 
 " Run Python and C files by Ctrl+h
-autocmd FileType python map <buffer> <C-h> :w<CR>:exec '!python3.11' shellescape(@%, 1)<CR>
-autocmd FileType python imap <buffer> <C-h> <esc>:w<CR>:exec '!python3.11' shellescape(@%, 1)<CR>
+autocmd FileType python map <buffer> <C-j> :w<CR>:exec '!python3.11' shellescape(@%, 1)<CR>
+autocmd FileType python imap <buffer> <C-j> <esc>:w<CR>:exec '!python3.11' shellescape(@%, 1)<CR>
 
-autocmd FileType c map <buffer> <C-h> :w<CR>:exec '!gcc' shellescape(@%, 1) '-o out; ./out'<CR>
-autocmd FileType c imap <buffer> <C-h> <esc>:w<CR>:exec '!gcc' shellescape(@%, 1) '-o out; ./out'<CR>
+autocmd FileType c map <buffer> <C-j> :w<CR>:exec '!gcc' shellescape(@%, 1) '-o out; ./out'<CR>
+autocmd FileType c imap <buffer> <C-.> <esc>:w<CR>:exec '!gcc' shellescape(@%, 1) '-o out; ./out'<CR>
 
-autocmd FileType sh map <buffer> <C-h> :w<CR>:exec '!bash' shellescape(@%, 1)<CR>
-autocmd FileType sh imap <buffer> <C-h> <esc>:w<CR>:exec '!bash' shellescape(@%, 1)<CR>
+autocmd FileType sh map <buffer> <C-j> :w<CR>:exec '!bash' shellescape(@%, 1)<CR>
+autocmd FileType sh imap <buffer> <C-j> <esc>:w<CR>:exec '!bash' shellescape(@%, 1)<CR>
 
 autocmd FileType python set colorcolumn=79
 
@@ -86,6 +91,10 @@ Plug 'morhetz/gruvbox'  " colorscheme gruvbox
 Plug 'mhartington/oceanic-next'  " colorscheme OceanicNext
 Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 Plug 'ayu-theme/ayu-vim'
+
+" File Explorer tree
+Plug 'preservim/nerdtree'
+Plug 'ryanoasis/vim-devicons'
 
 Plug 'xiyaowong/nvim-transparent'
 
