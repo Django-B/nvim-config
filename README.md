@@ -1,4 +1,7 @@
 # nvim-config
-`sudo npm install pyright -g`
+    sudo npm install pyright -g
 
-`sudo pacman -S xclip` - for arch linux
+## for arch
+    sudo pacman -S xclip
+## for ubuntu/debian
+    sudo apt install xclip
