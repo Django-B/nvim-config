@@ -1,7 +1,13 @@
 # nvim-config
+###### Unix, Linux
+
+```sh
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+```
     sudo npm install pyright -g
 
-## for arch
+###### for arch
     sudo pacman -S xclip
-## for ubuntu/debian
+###### for ubuntu/debian
     sudo apt install xclip
