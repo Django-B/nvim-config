@@ -6,8 +6,4 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 ```
     sudo npm install pyright -g
-
-###### for arch
-    sudo pacman -S xclip
-###### for ubuntu/debian
-    sudo apt install xclip
+```
