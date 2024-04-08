@@ -20,10 +20,22 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'ellisonleao/gruvbox.nvim'
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
+Plug 'olrtg/nvim-emmet'
+Plug 'Pocco81/auto-save.nvim'
 
 call plug#end()
 
+colorscheme gruvbox
+set background=dark
+highlight Normal ctermbg=0 guibg=#000000
+
 imap jk <ESC>
+nnoremap ,<space> :nohlsearch<CR>
+nnoremap <C-i> A<space>#<space>type:<space>ignore<esc>
+nnoremap H :tabp<cr>
+nnoremap L :tabn<cr>
+nnoremap <F3> :source<space>~/.config/nvim/init.vim<cr>
+nnoremap <C-b> :NERDTreeToggle<cr>
 
 " Netrw file explorer settings
 " let g:netrw_banner = 0 " hide banner above files
@@ -31,9 +43,12 @@ imap jk <ESC>
 " let g:netrw_browse_split = 3 " vertical split window when Enter pressed on file
 
 " turn off search highlight
-nnoremap ,<space> :nohlsearch<CR>
 
 lua << EOF
+require("auto-save").setup {
+	-- your config goes here
+	-- or just leave it empty :)
+}
 -- Set up nvim-cmp.
 local cmp = require'cmp'
 
