@@ -8,6 +8,10 @@ set softtabstop=4
 set mouse=a
 set noswapfile
 set encoding=UTF-8
+set guifont=DroidSansMono\ Nerd\ Font\ 11
+set termguicolors
+set clipboard=unnamedplus
+
 
 call plug#begin()
 Plug 'neovim/nvim-lspconfig'
@@ -20,8 +24,10 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'ellisonleao/gruvbox.nvim'
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
+Plug 'ryanoasis/nerd-fonts'
 Plug 'olrtg/nvim-emmet'
 Plug 'Pocco81/auto-save.nvim'
+Plug 'vim-airline/vim-airline'
 
 call plug#end()
 
@@ -36,6 +42,7 @@ nnoremap H :tabp<cr>
 nnoremap L :tabn<cr>
 nnoremap <F3> :source<space>~/.config/nvim/init.vim<cr>
 nnoremap <C-b> :NERDTreeToggle<cr>
+
 
 " Netrw file explorer settings
 " let g:netrw_banner = 0 " hide banner above files
@@ -151,8 +158,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- Buffer local mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     local opts = { buffer = ev.buf }
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+    -- vim.keymap.set('n', 'gD', vim.lsp.buf.definition, opts)
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+	vim.keymap.set("n", "gt", "<cmd>tab split | lua vim.lsp.buf.definition()<CR>", {})
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
     vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
     vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
